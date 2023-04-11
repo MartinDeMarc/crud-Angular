@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-add-edit-product',
@@ -11,7 +12,7 @@ import { Product } from 'src/app/interfaces/product';
 export class AddEditProductComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -34,6 +35,7 @@ export class AddEditProductComponent implements OnInit {
     };
 
     console.log(product);
+    this.toastr.success('El producto fue registrado con exito :)', 'Producto Registrado!');
 this.router.navigate(['/'])
   }
 }
