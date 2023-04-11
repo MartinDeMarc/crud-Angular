@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
@@ -10,7 +11,7 @@ import { Product } from 'src/app/interfaces/product';
 export class AddEditProductComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -29,8 +30,10 @@ export class AddEditProductComponent implements OnInit {
       description: this.form.value.description,
       price: this.form.value.price,
       stock: this.form.value.stock,
+
     };
 
     console.log(product);
+this.router.navigate(['/'])
   }
 }
